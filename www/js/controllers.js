@@ -3,7 +3,7 @@ var ref = new Firebase("https://friendlocatorapp.firebaseio.com/");
 angular.module('starter.controllers', [])
 
   .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
-
+    
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
     // To listen for when this page is active (for example, to refresh data),
@@ -30,10 +30,10 @@ angular.module('starter.controllers', [])
     $scope.login = function () {
       $scope.modal.show();
     };
-
     $scope.fun = function () {
       return true;
     }
+    
 
     // Perform the login action when the user submits the login form
     $scope.doLogin = function () {
@@ -65,16 +65,50 @@ angular.module('starter.controllers', [])
     console.log('Main');
   })
 
-  .controller('BrowserController', function ($scope,$state) {
-    console.log('browser');
-    $scope.loginWithFacebook = function () {
-      ref.authWithOAuthPopup("facebook", function (error, authData) {
-        if (error) {
-          console.log("Login Failed!", error);
-        } else {
-          console.log("Authenticated successfully with payload:", authData);
-          $state.go('app.search');
-        }
-      });
+  .controller('loginController', function ($scope,$state ,$window,$ionicSideMenuDelegate) {
+    // $ionicSideMenuDelegate.canDragContent(true);
+    console.log('loginController');
+    // $scope.loginWithFacebook = function () {
+    //   ref.authWithOAuthPopup("facebook", function (error, authData) {
+    //     if (error) {
+    //       console.log("Login Failed!", error);
+    //     } else {
+    //       console.log("Authenticated successfully with payload:", authData);
+          
+          
+    //     }
+    //   });
+    // }
+    
+    $scope.loginWithFacebook = function(){
+      $state.transitionTo('app.home',null, {'reload':true}).then(function(){
+        //$state.reload();
+        
+      });$window.location.reload();
+          
     }
+  })
+  
+  .controller('profileController',function(){
+    console.log('profile');
+  })
+
+.controller('inboxController',function(){
+    console.log('inbox');
+  })
+
+.controller('historyController',function(){
+    console.log('history');
+  })
+
+.controller('logoutController',function(){
+console.log('logout');
+  })
+
+.controller('homeController',function($state){
+  $state.reload();
+})
+
+.controller('newController',function(){
+    console.log('new');
   });

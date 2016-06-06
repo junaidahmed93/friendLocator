@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('starter', ['ionic', 'starter.controllers' ])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -33,21 +33,67 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   })
   
 
-  .state('app.search', {
-    url: '/search',
+  .state('app.home', {
+    url: '/home',
+    cache:true,
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/home.html'
       }
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
+  .state('app.login', {
+      url: '/login',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html',
-          controller : "BrowserController"
+          templateUrl: 'templates/login.html',
+          controller : "loginController"
+        }
+      }
+    })
+    .state('app.profile', {
+      url: '/profile',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/profile.html',
+          controller : "profileController"
+        }
+      }
+    })
+    .state('app.inbox', {
+      url: '/inbox',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/inbox.html',
+          controller : "inboxController"
+        }
+      }
+    })
+    .state('app.history', {
+      url: '/history',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/history.html',
+          controller: 'historyController'
+        }
+      }
+    })
+    .state('app.new', {
+      url: '/new',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/new.html',
+          controller: 'newController'
+        }
+      }
+    })
+    .state('app.logout', {
+      url: '/logout',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/logout.html',
+          controller: 'logoutController'
         }
       }
     })
@@ -71,5 +117,5 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/browse');
+  $urlRouterProvider.otherwise('/app/login');
 });
