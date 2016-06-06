@@ -3,7 +3,7 @@ var ref = new Firebase("https://friendlocatorapp.firebaseio.com/");
 angular.module('starter.controllers', [])
 
   .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
-    
+
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
     // To listen for when this page is active (for example, to refresh data),
@@ -33,7 +33,7 @@ angular.module('starter.controllers', [])
     $scope.fun = function () {
       return true;
     }
-    
+
 
     // Perform the login action when the user submits the login form
     $scope.doLogin = function () {
@@ -65,7 +65,7 @@ angular.module('starter.controllers', [])
     console.log('Main');
   })
 
-  .controller('loginController', function ($scope,$state ,$window,$ionicSideMenuDelegate) {
+  .controller('loginController', function ($scope, $state, $window, $ionicSideMenuDelegate) {
     // $ionicSideMenuDelegate.canDragContent(true);
     console.log('loginController');
     // $scope.loginWithFacebook = function () {
@@ -74,41 +74,75 @@ angular.module('starter.controllers', [])
     //       console.log("Login Failed!", error);
     //     } else {
     //       console.log("Authenticated successfully with payload:", authData);
-          
-          
+
+
     //     }
     //   });
     // }
-    
-    $scope.loginWithFacebook = function(){
-      $state.transitionTo('app.home',null, {'reload':true}).then(function(){
+
+    $scope.loginWithFacebook = function () {
+      $state.transitionTo('app.home', null, { 'reload': true }).then(function () {
         //$state.reload();
-        
-      });$window.location.reload();
-          
+
+      }); $window.location.reload();
+
     }
   })
-  
-  .controller('profileController',function(){
+
+  .controller('profileController', function () {
     console.log('profile');
   })
 
-.controller('inboxController',function(){
+  .controller('inboxController', function () {
     console.log('inbox');
   })
 
-.controller('historyController',function(){
+  .controller('historyController', function () {
     console.log('history');
   })
 
-.controller('logoutController',function(){
-console.log('logout');
+  .controller('logoutController', function () {
+    console.log('logout');
   })
 
-.controller('homeController',function($state){
-  $state.reload();
-})
+  .controller('homeController', function ($cordovaGeolocation, $scope, $state,$ionicPlatform,$ionicLoading) {
+    $state.reload();
+    $ionicPlatform.ready(function () {
 
-.controller('newController',function(){
+      $ionicLoading.show({
+        template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Acquiring location!'
+      });
+
+      var posOptions = {
+        enableHighAccuracy: true,
+        timeout: 20000,
+        maximumAge: 0
+      };
+      $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
+        var lat = position.coords.latitude;
+        var long = position.coords.longitude;
+        console.log(lat, long)
+
+        var myLatlng = new google.maps.LatLng(lat, long);
+
+        var mapOptions = {
+          center: myLatlng,
+          zoom: 24,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        $scope.map = map;
+        $ionicLoading.hide();
+
+      }, function (err) {
+        $ionicLoading.hide();
+        console.log(err);
+      });
+    });
+  })
+
+  .controller('newController', function () {
     console.log('new');
   });
