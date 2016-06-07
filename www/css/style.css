@@ -1,6 +1,19 @@
 /* Empty. Add your own CSS if you like */
 #map{
+    margin-top: 45px; 
     height: 500px;
     width: 100%;
     border: 1px solid red;
+}
+
+.top{
+    margin-top: 45px; 
+}
+.button{
+    margin-left: 4px;
+    margin-right: 4px; 
+}
+
+.bar{
+    color:red;
 }
