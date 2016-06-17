@@ -47,61 +47,19 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('PlaylistsCtrl', function ($scope) {
-    $scope.playlists = [
-      { title: 'Reggae', id: 1 },
-      { title: 'Chill', id: 2 },
-      { title: 'Dubstep', id: 3 },
-      { title: 'Indie', id: 4 },
-      { title: 'Rap', id: 5 },
-      { title: 'Cowbell', id: 6 }
-    ];
-  })
-
-  .controller('PlaylistCtrl', function ($scope, $stateParams) {
-  })
-
-  .controller('MainController', function ($scope) {
-    console.log('Main');
-  })
-
-  .controller('loginController', function ($scope, $state, $window, $ionicSideMenuDelegate,LoginService) {
+  
+  .controller('loginCtrl', function ($scope, $state, $window, $ionicSideMenuDelegate, LoginService) {
     // $ionicSideMenuDelegate.canDragContent(true);
-    console.log('loginController');
-    $scope.loginWithFacebook = function(){
+    console.log('loginCtrl');
+    $scope.loginWithFacebook = function () {
       LoginService.loginServiceFunction();
     }
-
-    // $scope.loginWithFacebook = function () {
-    //   ref.authWithOAuthPopup("facebook", function (error, authData) {
-    //     if (error) {
-    //       console.log("Login Failed!", error);
-    //     } else {
-    //       console.log("Authenticated successfully with payload:", authData);
-    //       $state.transitionTo('app.home', null, { 'reload': true }).then(function () {           
-    //         $window.location.reload(true);
-    //       });
-
-    //     }
-    //   });
-    // }
-
-    // $scope.loginWithFacebook = function () {
-    //   $state.transitionTo('app.home', null, { 'reload': true }).then(function () {
-    //     //$state.reload();
-    //     $window.location.reload(true);
-    //   });
-
-    // }
   })
 
   .controller('profileController', function () {
     console.log('profile');
   })
-
-  .controller('inboxController', function () {
-    console.log('inbox');
-  })
+  
 
   .controller('historyController', function ($scope) {
     console.log('history');
@@ -109,11 +67,8 @@ angular.module('starter.controllers', [])
 
   })
 
-  .controller('logoutController', function () {
-    console.log('logout');
-  })
-
-  .controller('homeController', function ($cordovaGeolocation, $scope, $state, $ionicPlatform, $ionicLoading, $window , $stateParams) {
+  
+  .controller('homeController', function ($cordovaGeolocation, $scope, $state, $ionicPlatform, $ionicLoading, $window, $stateParams) {
 
     $ionicPlatform.ready(function () {
 

@@ -24,36 +24,33 @@ angular.module('starter', ['ionic', 'starter.controllers' , 'ngCordova' ])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
-  
+
+    .state('login', {
+      url: '/login',
+      templateUrl: 'templates/login.html',
+      controller: 'loginCtrl'
+    })
+
     .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
-  
 
-  .state('app.home', {
+
+   .state('app.home', {
     url: '/home',
     cache:true,
     views: {
       'menuContent': {
         templateUrl: 'templates/home.html',
         controller : "homeController"
-        
       }
     }
   })
 
-  .state('app.login', {
-      url: '/login',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/login.html',
-          controller : "loginController"
-        }
-      }
-    })
+
     .state('app.profile', {
       url: '/profile',
       views: {
@@ -119,5 +116,5 @@ angular.module('starter', ['ionic', 'starter.controllers' , 'ngCordova' ])
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/login');
+  $urlRouterProvider.otherwise('/login');
 });
