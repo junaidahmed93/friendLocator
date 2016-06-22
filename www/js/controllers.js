@@ -63,10 +63,15 @@ angular.module('starter.controllers', [])
 
   .controller('historyController', function ($scope) {
     console.log('history');
-
-
   })
 
+  .controller('mapController',function($scope){
+    console.log('map')
+  })
+
+  .controller('messagesController',function($scope){
+    console.log('messages')
+  })
   
   .controller('homeController', function ($cordovaGeolocation, $scope, $state, $ionicPlatform, $ionicLoading, $window, $stateParams) {
 
@@ -210,3 +215,4 @@ angular.module('starter.controllers', [])
   .controller('newController', function () {
     console.log('new');
   });
+  

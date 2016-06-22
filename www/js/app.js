@@ -4,117 +4,119 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers' , 'ngCordova' ])
+angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
 
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      cordova.plugins.Keyboard.disableScroll(true);
+  .run(function ($ionicPlatform) {
+    $ionicPlatform.ready(function () {
+      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+      // for form inputs)
+      if (window.cordova && window.cordova.plugins.Keyboard) {
+        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        cordova.plugins.Keyboard.disableScroll(true);
 
-    }
-    if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
-    }
-  });
-})
-
-.config(function($stateProvider, $urlRouterProvider) {
-  $stateProvider
-
-    .state('login', {
-      url: '/login',
-      templateUrl: 'templates/login.html',
-      controller: 'loginCtrl'
-    })
-
-    .state('app', {
-    url: '/app',
-    abstract: true,
-    templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
+      }
+      if (window.StatusBar) {
+        // org.apache.cordova.statusbar required
+        StatusBar.styleDefault();
+      }
+    });
   })
 
+  .config(function ($stateProvider, $urlRouterProvider) {
+    $stateProvider
 
-   .state('app.home', {
-    url: '/home',
-    cache:true,
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/home.html',
-        controller : "homeController"
-      }
-    }
-  })
+      .state('login', {
+        url: '/login',
+        templateUrl: 'templates/login.html',
+        controller: 'loginCtrl'
+      })
+
+      .state('app', {
+        url: '/app',
+        abstract: true,
+        templateUrl: 'templates/menu.html',
+        controller: 'AppCtrl'
+      })
 
 
-    .state('app.profile', {
-      url: '/profile',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/profile.html',
-          controller : "profileController"
+      .state('app.home', {
+        url: '/home',
+        cache: true,
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/home.html',
+            controller: "homeController"
+          }
         }
-      }
-    })
-    .state('app.inbox', {
-      url: '/inbox',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/inbox.html',
-          controller : "inboxController"
-        }
-      }
-    })
-    .state('app.history', {
-      url: '/history',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/history.html',
-          controller: 'historyController'
-        }
-      }
-    })
-    .state('app.new', {
-      url: '/new',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/new.html',
-          controller: 'newController'
-        }
-      }
-    })
-    .state('app.logout', {
-      url: '/logout',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/logout.html',
-          controller: 'logoutController'
-        }
-      }
-    })
-    .state('app.playlists', {
-      url: '/playlists',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
-        }
-      }
-    })
+      })
 
-  .state('app.single', {
-    url: '/playlists/:playlistId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
-      }
-    }
-  });
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/login');
-});
+      .state('app.profile', {
+        url: '/profile',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/profile.html',
+            controller: "profileController"
+          }
+        }
+      })
+
+      .state('app.map', {
+        url: '/map',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/map.html',
+            controller: "mapController"
+          }
+        }
+      })
+
+
+      .state('app.messages', {
+        url: '/messages',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/messages.html',
+            controller: "messagesController"
+          }
+        }
+      })
+      .state('app.history', {
+        url: '/history',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/history.html',
+            controller: 'historyController'
+          }
+        }
+      })      
+      .state('app.logout', {
+        url: '/logout',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/logout.html',
+            controller: 'logoutController'
+          }
+        }
+      })
+      .state('app.playlists', {
+        url: '/playlists',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/playlists.html',
+            controller: 'PlaylistsCtrl'
+          }
+        }
+      })
+
+      .state('app.single', {
+        url: '/playlists/:playlistId',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/playlist.html',
+            controller: 'PlaylistCtrl'
+          }
+        }
+      });
+    // if none of the above states are matched, use this as the fallback
+    $urlRouterProvider.otherwise('/login');
+  });    
