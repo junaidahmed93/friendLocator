@@ -1,6 +1,36 @@
 <ion-view>
   <ion-content>
-    <h2>Login page</h2>
-    <button ng-click="loginWithFacebook()">Login With Facebook</button>
+    <div class="login-main-heading">
+      <h1 class="all-elements-center login-heading">Friend Locator</h1>
+      <h3 class="all-elements-center login-heading">Welcome</h3>
+      
+    <div class="form-elements">
+      <h5 class="all-elements-center login-heading">Login</h5>
+      <form action="">
+        <div class="list list-inset">
+          <label class="item item-input">
+                 <i class="icon ion-person placeholder-icon"></i>
+                <input type="text" placeholder="User Name">
+              </label>
+          <label class="item item-input">
+                 <i class="icon ion-lock-combination placeholder-icon"></i>
+                <input type="password" placeholder="Password">
+              </label>
+          <div>
+            <button class="button button-large button-assertive button-login">
+               Login
+            </button>
+            <button class="button button-large button-assertive button-signup">
+                Sign Up
+            </button>
+          </div>
+          <div>
+            <button class="button button-block button-positive button-facebook-login" ng-click="loginWithFacebook()">
+               Login With Facebook
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
   </ion-content>
 </ion-view>

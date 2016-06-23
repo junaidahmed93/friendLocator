@@ -20,3 +20,31 @@
 .cent{
     text-align: center
 }
+.all-elements-center{
+    text-align: center;
+}
+
+.form-elements{
+    margin-top:30%;
+}
+.button.button-login{
+    background-color: #2cc9b4 !important;
+    width: 47%;  
+    margin-top:5px;     
+}
+
+.button.button-signup{
+    background-color: black !important;
+    width: 47%; 
+    margin-top:5px; 
+}
+
+.button.button-facebook-login{
+    background-color: #4463b1 !important;
+}
+.login-heading{
+    color:#2cc9b4;
+}
+.login-main-heading{
+    margin-top:100px;    
+}
