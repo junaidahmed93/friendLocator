@@ -47,32 +47,45 @@ angular.module('starter.controllers', [])
     };
   })
 
-  
+
   .controller('loginCtrl', function ($scope, $state, $window, $ionicSideMenuDelegate, LoginService) {
     // $ionicSideMenuDelegate.canDragContent(true);
     console.log('loginCtrl');
     $scope.loginWithFacebook = function () {
-      LoginService.loginServiceFunction();
+
+      LoginService.loginFunction().then(function(a){
+        console.log("a" ,a);
+        $state.go('app.home',{auth :a});
+      })
+      // LoginService.loginServiceFunction().then(function () {
+      //   console.log(a);
+      //   $state.go('app.home', { auth: a });
+      // })
+
     }
   })
 
   .controller('profileController', function () {
     console.log('profile');
   })
-  
 
-  .controller('historyController', function ($scope) {
+
+  .controller('historyController', function ($scope, $state) {
     console.log('history');
+    $scope.done = function () {
+      $state.go('app.map', { auth: "abc" });
+    }
   })
 
-  .controller('mapController',function($scope){
-    console.log('map')
+  .controller('mapController', function ($scope, $stateParams) {
+    console.log('map');
+    console.log($stateParams);
   })
 
-  .controller('messagesController',function($scope){
+  .controller('messagesController', function ($scope) {
     console.log('messages')
   })
-  
+
   .controller('homeController', function ($cordovaGeolocation, $scope, $state, $ionicPlatform, $ionicLoading, $window, $stateParams) {
 
     $ionicPlatform.ready(function () {
@@ -209,10 +222,9 @@ angular.module('starter.controllers', [])
       $window.location.reload(true);
     }
 
-    console.log($stateParams.authData);
+    console.log($stateParams);
   })
 
   .controller('newController', function () {
     console.log('new');
   });
-  

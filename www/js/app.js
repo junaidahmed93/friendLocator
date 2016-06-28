@@ -42,10 +42,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       .state('app.home', {
         url: '/home',
         cache: true,
+        params :{
+              auth : "some Default"
+            },
         views: {
           'menuContent': {
             templateUrl: 'templates/home.html',
             controller: "homeController"
+
           }
         }
       })
@@ -62,10 +66,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
 
       .state('app.map', {
         url: '/map',
+        params :{
+              auth : "some Default"
+            },
         views: {
           'menuContent': {
             templateUrl: 'templates/map.html',
             controller: "mapController"
+            
           }
         }
       })
@@ -82,38 +90,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       })
       .state('app.history', {
         url: '/history',
+
         views: {
           'menuContent': {
             templateUrl: 'templates/history.html',
-            controller: 'historyController'
-          }
-        }
-      })      
-      .state('app.logout', {
-        url: '/logout',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/logout.html',
-            controller: 'logoutController'
-          }
-        }
-      })
-      .state('app.playlists', {
-        url: '/playlists',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/playlists.html',
-            controller: 'PlaylistsCtrl'
-          }
-        }
-      })
-
-      .state('app.single', {
-        url: '/playlists/:playlistId',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/playlist.html',
-            controller: 'PlaylistCtrl'
+            controller: 'historyController',            
           }
         }
       });
