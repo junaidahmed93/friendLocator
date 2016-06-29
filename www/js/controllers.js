@@ -14,6 +14,10 @@ angular.module('starter.controllers', [])
     // Form data for the login modal
     $scope.loginData = {};
 
+    $scope.profileImage = localStorage.getItem('profile_image');
+    $scope.userName = localStorage.getItem('user_name');
+    console.log($scope.profileImage);
+
     // Create the login modal that we will use later
     $ionicModal.fromTemplateUrl('templates/login.html', {
       scope: $scope
@@ -47,95 +51,110 @@ angular.module('starter.controllers', [])
     };
   })
 
-  
+
   .controller('loginCtrl', function ($scope, $state, $window, $ionicSideMenuDelegate, LoginService) {
     // $ionicSideMenuDelegate.canDragContent(true);
     console.log('loginCtrl');
     $scope.loginWithFacebook = function () {
-      LoginService.loginServiceFunction();
+
+      LoginService.loginFunction().then(function (a) {
+        console.log("a", a);
+        $state.go('app.home', { auth: a });
+      })
+      // LoginService.loginServiceFunction().then(function () {
+      //   console.log(a);
+      //   $state.go('app.home', { auth: a });
+      // })
+
     }
   })
 
   .controller('profileController', function () {
     console.log('profile');
   })
-  
 
-  .controller('historyController', function ($scope) {
+
+  .controller('historyController', function ($scope, $state) {
     console.log('history');
+    $scope.done = function () {
+      $state.go('app.map', { auth: "abc" });
+    }
   })
 
-  .controller('mapController',function($scope){
-    console.log('map')
+  .controller('mapController', function ($scope, $stateParams) {
+    console.log('map');
+    console.log($stateParams);
   })
 
-  .controller('messagesController',function($scope){
+  .controller('messagesController', function ($scope) {
     console.log('messages')
   })
-  
+
   .controller('homeController', function ($cordovaGeolocation, $scope, $state, $ionicPlatform, $ionicLoading, $window, $stateParams) {
 
-    $ionicPlatform.ready(function () {
+    //$ionicPlatform.ready(function () {
 
-      $ionicLoading.show({
-        template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Acquiring location!'
-      });
-
-      var posOptions = {
-        enableHighAccuracy: true,
-        timeout: 20000,
-        maximumAge: 0
-      };
-      $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
-        var lat = position.coords.latitude;
-        var long = position.coords.longitude;
-        console.log(lat, long)
-
-        var myLatlng = new google.maps.LatLng(lat, long);
-
-        var mapOptions = {
-          center: myLatlng,
-          zoom: 18,
-          mapTypeId: google.maps.MapTypeId.ROADMAP,
-          mapTypeControl: false
-        };
-
-        var styles = [
-          {
-            stylers: [
-              { hue: "#b5730d" },
-              { saturation: -20 }
-            ]
-          }, {
-            featureType: "road",
-            elementType: "geometry",
-            stylers: [
-              { lightness: 100 },
-              { visibility: "simplified" }
-            ]
-          }, {
-            featureType: "road",
-            elementType: "labels",
-            stylers: [
-              { visibility: "off" }
-            ]
-          }
-        ];
-
-
-
-        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-        map.setOptions({ styles: styles });
-
-        $scope.map = map;
-        $ionicLoading.hide();
-
-      }, function (err) {
-        $ionicLoading.hide();
-        console.log(err);
-      });
+    $ionicLoading.show({
+      template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Acquiring location!'
     });
 
+    var posOptions = {
+      enableHighAccuracy: true,
+      timeout: 20000,
+      maximumAge: 0
+    };
+    $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
+      var lat = position.coords.latitude;
+      var long = position.coords.longitude;
+      console.log(lat, long)
+
+      var myLatlng = new google.maps.LatLng(lat, long);
+
+      var mapOptions = {
+        center: myLatlng,
+        zoom: 18,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeControl: false
+      };
+      
+
+      var styles = [
+        {
+          stylers: [
+            { hue: "#b5730d" },
+            { saturation: -20 }
+          ]
+        }, {
+          featureType: "road",
+          elementType: "geometry",
+          stylers: [
+            { lightness: 100 },
+            { visibility: "simplified" }
+          ]
+        }, {
+          featureType: "road",
+          elementType: "labels",
+          stylers: [
+            { visibility: "off" }
+          ]
+        }
+      ];
+
+
+
+      var map = new google.maps.Map(document.getElementById("map"), mapOptions);      
+      map.setOptions({ styles: styles });
+
+      //$scope.map = map;
+      $ionicLoading.hide();
+    }, function (err) {
+      $ionicLoading.hide();
+      console.log(err);
+    });
+    // });
+    $scope.$on("$ionicView.enter", function (scopes, states) {
+      google.maps.event.trigger(map, 'resize');
+    });
     $scope.Satellite = function () {
       $ionicLoading.show({
         template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Acquiring location!'
@@ -209,10 +228,9 @@ angular.module('starter.controllers', [])
       $window.location.reload(true);
     }
 
-    console.log($stateParams.authData);
+    console.log($stateParams);
   })
 
   .controller('newController', function () {
     console.log('new');
   });
-  

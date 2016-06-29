@@ -1,4 +1,9 @@
 /* Empty. Add your own CSS if you like */
+@media all and (max-width: 699px) and (min-width: 520px){
+    body{
+        background-color: green;
+    }
+}
 #map{
     margin-top: 45px; 
     height: 500px;
@@ -47,4 +52,36 @@
 }
 .login-main-heading{
     margin-top:100px;    
+}
+
+.profile-image{
+    border-radius: 50px;
+}
+
+.menu-profile-container{
+    margin-lef: 30px; 
+}
+
+/*.red{
+    background-color: red !important;
+}
+
+.green{
+    background-color: green !important;
+}
+.blue{
+    background-color: blue !important;
+}
+.pink{
+    background-color: pink;
+}
+a.ion-item{
+    background-color: purple !important;
+}*/
+.item-content{
+    background-color: #999900 !important; 
+}
+.item.item-stable{
+    background-color: black;
+   
 }

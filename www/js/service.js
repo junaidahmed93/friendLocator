@@ -1,26 +1,29 @@
 
 var app = angular.module('starter');
-app.service('LoginService', function ($state, $window) {
-    var vm = this;
-    vm.loginServiceFunction = function () {
-        $state.transitionTo('app.home', null, { 'reload': true }).then(function () {
+app.service('LoginService', function ($state, $window, $stateParams, $q) {
 
-
+    loginServiceFunction = function () {
+        var defer = $q.defer();
+        console.log('Login-page')
+        var ref = new Firebase('https://friendlocatorapp.firebaseio.com');
+        ref.authWithOAuthPopup("facebook", function (error, authData) {
+            if (error) {
+                console.log("Login Failed!", error);
+            } else {
+                console.log("Authenticated successfully with payload:", authData);
+                console.log(authData.facebook.profileImageURL);
+                localStorage.setItem('profile_image',authData.facebook.profileImageURL);
+                localStorage.setItem('user_name',authData.facebook.displayName);
+                // $state.transitionTo('app.home' , {authData:authData}, null, { 'reload': true }).then(function () {                });
+                //$state.go('app.home' , {auth:'abc'});   
+                defer.resolve(authData);
+                return authData;
+            }
         });
-        console.log('hi')
-        // var ref = new Firebase('https://friendlocatorapp.firebaseio.com');
-        // ref.authWithOAuthPopup("facebook", function (error, authData) {
-        //     if (error) {
-        //         console.log("Login Failed!", error);
-        //     } else {
-        //         console.log("Authenticated successfully with payload:", authData);
-
-        //         $state.transitionTo('app.home' , {authData:authData}, null, { 'reload': true }).then(function () {
-
-
-        //         });
-
-        //     }
-        // });
+        return defer.promise;
     }
+    return {
+        loginFunction :loginServiceFunction
+    }
+
 })
