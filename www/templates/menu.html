@@ -1,4 +1,4 @@
-<ion-side-menus enable-menu-with-back-views="false">
+<ion-side-menus enable-menu-with-back-views="true">
   <ion-side-menu-content drag-content="false">
     <ion-nav-bar class="bar-stable red">
       <!--<ion-nav-back-button></ion-nav-back-button>-->
@@ -7,45 +7,68 @@
         <button ng-show="fun()" class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
       </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-android-notifications-none" menu-toggle="right">
+        </button>
+      </ion-nav-buttons>
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 
-  <ion-side-menu side="left" width="200" >
+  <ion-side-menu side="left" width="200">
     <ion-header-bar class="bar-stable item-content">
-      <h1 class="title">Left</h1>
+      <h1 class="title">Friend Locator</h1>
     </ion-header-bar>
     <ion-content class="item-content">
-      <ion-list >
+      <ion-list>
         <ion-item menu-close ui-sref="app.home" class="item-stable item-icon-left side-menu-items">
           <div class="menu-profile-container">
             <img class="profile-image" ng-src="{{profileImage}}">
             <div>
-              <p style="display:inline; font-size: 17px; margin-bottom:20px; text-transform:capitalize">{{userName}}</p>
+              <p style="display:inline; color:black; font-size: 17px; margin-bottom:20px; text-transform:capitalize">{{userName}}</p>
             </div>
           </div>
         </ion-item>
-        <ion-item menu-close href="#/app/profile" class="item-stable item-icon-left side-menu-items">
-           <i class="icon ion-android-list">
+        <ion-item menu-close ui-sref="app.profile" class="item-stable item-icon-left side-menu-items">
+          <i class="icon ion-android-list">
              
-           </i>
-           Profile          
+           </i> Profile
         </ion-item>
-        <ion-item menu-close href="#/app/messages" class="red item-stable item-icon-left side-menu-items">
-          <i class="icon ion-email"></i>
-          Messages
+        <ion-item menu-close ui-sref="app.messages" class="red item-stable item-icon-left side-menu-items">
+          <i class="icon ion-email"></i> Messages
         </ion-item>
-        <ion-item menu-close href="#/app/map" class="item-stable item-icon-left side-menu-items">
-          <i class="icon ion-map"></i>
-          Map
+        <ion-item menu-close ui-sref="app.map" class="item-stable item-icon-left side-menu-items">
+          <i class="icon ion-map"></i> Map
         </ion-item>
-        <ion-item menu-close href="#/app/history" class="item-stable item-icon-left side-menu-items">
-          <i class="icon ion-clock"></i>
-          History
+        <ion-item menu-close ui-sref="app.history" class="item-stable item-icon-left side-menu-items">
+          <i class="icon ion-clock"></i> History
         </ion-item>
         <ion-item menu-close ui-sref="app.home" class="item-stable item-icon-left side-menu-items">
-          <i class="icon ion-home"></i>
-          Home
+          <i class="icon ion-home"></i> Home
+        </ion-item>
+        <ion-item menu-close ui-sref="app.home" class="item-stable item-icon-left side-menu-items" ng-click="openLogout()">
+          <i class="icon ion-log-out"></i> Log Out
+        </ion-item>
+        <hr>
+        <p class="cent" style="margin-top:10px;">More</p>
+        <hr>
+        <ion-item menu-close ui-sref="app.home" class="item-stable item-icon-left side-menu-items">
+          <i class="icon ion-toggle-filled"></i> Setting
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+
+  <ion-side-menu side="right" width="200">
+
+    <ion-header-bar class="bar-stable item-content">
+      <h1 class="title">Notification</h1>
+    </ion-header-bar>
+
+    <ion-content class="item-content">
+      <ion-list>
+        <ion-item menu-close ui-sref="app.home" class="item-stable item-icon-left side-menu-items">
+          <i class="icon ion-toggle-filled"></i> Setting
         </ion-item>
       </ion-list>
     </ion-content>

@@ -1,17 +1,20 @@
-<ion-view view-title="Home"  cache-view="false">
+<ion-view cache-view="false">
+  <ion-nav-title>
+    <span class="nav-title">Home</span>
+  </ion-nav-title>
   <button class="button button-small button-stable" ng-click="Satellite()">View</button>
   <h2>hello</h2>
-  <ion-header-bar align-title="left" class="bar-positive top">
-    <button class="button button-small button-stable" ng-click="Satellite()">Satellite View</button>
-    <button class="button button-small button-stable" ng-click="hybrid()">Hybrid</button>
-    <button class="button button-small button-stable" ng-click="mapFunc()">Map</button>
-    <button class="button button-small button-stable" ng-click="mapFunc()">Map</button>
+  <ion-header-bar align-title="left" class="bar top">
+    <div class="button-bar">
+      <button class="button  button-stable" ng-click="Satellite()">Satellite View</button>
+      <button class="button  button-stable" ng-click="hybrid()">Hybrid</button>
+      <button class="button  button-stable" ng-click="mapFunc()">Map</button>
+    </div>
+
   </ion-header-bar>
   <ion-content class="has-header ion-home">
     <div id="map" data-tap-disabled="true" class="google-map-class"></div>
   </ion-content>
   <ion-footer-bar class="bar-assertive">
-
-    
   </ion-footer-bar>
 </ion-view>

@@ -1,12 +1,8 @@
 /* Empty. Add your own CSS if you like */
-@media all and (max-width: 699px) and (min-width: 520px){
-    body{
-        background-color: green;
-    }
-}
+
 #map{
-    margin-top: 45px; 
-    height: 500px;
+    margin-top: 0px; 
+    height: 100%;
     width: 100%;
     border: 1px solid red;
 }
@@ -39,7 +35,7 @@
 }
 
 .button.button-signup{
-    background-color: black !important;
+    /*background-color: black !important;*/
     width: 47%; 
     margin-top:5px; 
 }
@@ -48,7 +44,7 @@
     background-color: #4463b1 !important;
 }
 .login-heading{
-    color:#2cc9b4;
+    /*color:#2cc9b4;*/
 }
 .login-main-heading{
     margin-top:100px;    
@@ -79,9 +75,17 @@ a.ion-item{
     background-color: purple !important;
 }*/
 .item-content{
-    background-color: #999900 !important; 
+    background-color: #f8f8f8 !important; 
+   
+  
 }
 .item.item-stable{
-    background-color: black;
+    border-color: red;
+    border: 0px;
+        /*background-color: black;*/   
    
+}
+
+.nav-title{
+    color:green;   
 }
