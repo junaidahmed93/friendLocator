@@ -7,11 +7,11 @@ angular.module('starter')
             LoginService.loginFunction().then(function (a) {
                 console.log("a", a);
                 $state.go('app.home', { auth: a });
-            })
+            });
             // LoginService.loginServiceFunction().then(function () {
             //   console.log(a);
             //   $state.go('app.home', { auth: a });
             // })
 
         }
-    })
+    });
