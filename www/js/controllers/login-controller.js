@@ -4,14 +4,13 @@ angular.module('starter')
         console.log('loginCtrl');
         $scope.loginWithFacebook = function () {
 
-            LoginService.loginFunction().then(function (a) {
-                console.log("a", a);
-                $state.go('app.home', { auth: a });
+            LoginService.loginFunction().then(function (user) {
+                console.log("user", user);
+                $state.go('app.home', { auth: user });
+                LoginService.saveData(user).then(function(success){
+                    console.log(success);
+                });
             });
-            // LoginService.loginServiceFunction().then(function () {
-            //   console.log(a);
-            //   $state.go('app.home', { auth: a });
-            // })
-
+            
         }
     });

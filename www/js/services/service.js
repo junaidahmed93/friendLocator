@@ -1,11 +1,10 @@
 
 angular.module('starter')
     .service('LoginService', function ($state, $window, $stateParams, $q) {
-
+        var ref = new Firebase('https://friendlocatorapp.firebaseio.com');
         loginServiceFunction = function () {
             var defer = $q.defer();
-            console.log('Login-page')
-            var ref = new Firebase('https://friendlocatorapp.firebaseio.com');
+            console.log('Login-page')            
             ref.authWithOAuthPopup("facebook", function (error, authData) {
                 if (error) {
                     console.log("Login Failed!", error);
@@ -22,8 +21,29 @@ angular.module('starter')
             });
             return defer.promise;
         }
+
+        saveData = function(user){
+            var defer = $q.defer();
+            console.log("a inside save data",user);
+            ref.child("user").child(user.uid).update({
+                uid : user.uid,
+                name: user.facebook.displayName
+            },onComplete)
+
+            function onComplete(){
+                defer.resolve("Save to database");
+            }
+
+           return defer.promise;
+        }
+        getData = function(){
+            console.log("This is getData inside");
+        }
+
         return {
-            loginFunction: loginServiceFunction
+            loginFunction: loginServiceFunction,
+            getData : getData,
+            saveData : saveData
         }
 
     });
